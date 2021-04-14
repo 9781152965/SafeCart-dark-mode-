@@ -1,0 +1,95 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} {{product.product_name}} - My Awesome Cart{% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+
+            <a  class="btn btn-outline-dark" href="/shop">&#x2190; Continue Shopping</a>
+
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th><h5><strong><b>Items</b></strong>: {{product.product_name}}</h5></th>
+                    <th><h5><strong><b>Items</b></strong>: {{order.get_cart_items}}</h5></th>
+                    <th><h5>Total:<strong> Rs.{{product.price}}</strong></h5></th>
+                    <th>
+                        <a  style="float:right; margin:5px;" class="btn btn-success" href="/">Checkout</a>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+        <br>
+        <div class="box-element">
+            <div class="cart-row">
+                <div style="flex:2"><strong>Product Image</strong></div>
+                <div style="flex:2"><strong>Name</strong></div>
+                <div style="flex:2"><strong>Description</strong></div>
+                <div style="flex:1"><strong>Price</strong></div>
+              
+                
+            </div>
+            
+
+            <div class="cart-row">
+                <div style="flex:2 "><img class="row-image" src="/media/{{product.image}}"></div>
+                <div style="flex:2"> <b>{{product.product_name}}</b></div>
+                <div style="flex:2"><p>{{product.desc}}</p></div>
+                
+                <div style="flex:1"><p><b>Rs.{{product.price}} </b></p></div>
+                
+               
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block js %}
+<script>
+console.log('working');
+if(localStorage.getItem('cart') == null){
+var cart = {};
+}
+else
+{
+cart = JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+$('.cart').click(function(){
+console.log('clicked');
+var idstr = this.id.toString();
+console.log(idstr);
+if (cart[idstr] !=undefined){
+cart[idstr] = cart[idstr] + 1;
+}
+else
+{
+cart[idstr] = 1;
+}
+console.log(cart);
+localStorage.setItem('cart', JSON.stringify(cart));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+});
+$('#popcart').popover();
+document.getElementById("popcart").setAttribute('data-content', '<h5>Cart for your items in my shopping cart</h5>');
+</script>
+{% endblock %}

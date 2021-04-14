@@ -1,0 +1,57 @@
+{% extends 'shop/basic.html' %}
+ {% block title%}home{% endblock %} 
+ {% block css%}
+<style>
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+    }
+  .col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 12 -7 -19.666667%;
+    max-width: 20.333333%;
+    }
+  
+
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="container">
+   <h1 class="text-center">Welcome to our safe cart.<h1>
+  <div class="row mt-3">
+    {% for p in product_list %}
+    <div class="col-md-4 my-3 w-auto style="border">
+      <strong><h3>{{p.title}}</h3></strong>
+      <img class="img-fluid" style="height:2500; object-fit:cover;" src="{{p.image.url}}" >
+      <h5>Price: <strike>Rs. {{p.marked_price}}</strike>Rs.{{p.selling_price}}</h5>
+      <span id="divpr{{p.id}}" class="divpr">
+          <button id="pr{{p.id}}" class="btn btn-danger cart">Add To Cart</button>
+      </span>
+        <a  href="/shop/products/{{p.id}}"><button id="qv{{p.id}}" class="btn btn-danger cart">QuickView</button></a>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{p.image.url}}"  height="100%" width="1350px" alt="...">
+    </div>
+
+  </div>
+
+</div>-->
+{% endblock %}
+
