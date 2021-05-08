@@ -28,7 +28,7 @@ h1,h2,h3,h4,h5,h6{
 
 
 .bg-dark {
-    background-color: #dc172a!important;
+    background-color: #07373d!important;
 }
 #cart-icon{
 	width:28px;
@@ -52,9 +52,11 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn{
-	border-radius: 0;
+	border-radius: 10 px;
 }
-
+button {
+    border-radius: 45px;
+}
 .row-image{
 	width:250px;
 	display: inline-block;
