@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 from django.contrib.auth.models import User
 # Create your models here.
 class Customer(models.Model):
@@ -11,18 +12,72 @@ class Customer(models.Model):
     def __str__(self):
         return self.full_name
 
-
+CATEGORY_CHOICES=(
+    ("M", "Mobile"),
+    ("L", "Laptop"),
+    ("TW", "Top Wear"),
+    ("BW", "Bottom Wear"),
+)
 class Product(models.Model):
+    GST_CHOICES = (("0",'0'),("3",'3'),("5",'5'),("12",'12'),("18",'18'),("28",'28'))
+
     product_id = models.AutoField
     product_name = models.CharField(max_length=50)
-    category = models.CharField(max_length=50, default="")
+    category = models.CharField( choices=CATEGORY_CHOICES, max_length=2 )
     subcategory = models.CharField(max_length=50, default="")
     price = models.IntegerField(default=0)
     marked_price = models.PositiveIntegerField( default = "0")
     selling_price = models.PositiveIntegerField( default = "0")
     desc = models.CharField(max_length=300, default="its is good for daily use")
     pub_date = models.DateField()
+    gst = models.CharField(default='0',max_length=3,choices=GST_CHOICES)
     image = models.ImageField(upload_to='shop/images', default="")
+    image1 = models.ImageField(upload_to='shop/images', default="", null=True)
+    image2 = models.ImageField(upload_to='shop/images', default="", null=True, blank=True)
+    image3 = models.ImageField(upload_to='shop/images', default="", null=True, blank=True)
+    image4 = models.ImageField(upload_to='shop/images', default="", null=True, blank=True)
+    image5 = models.ImageField(upload_to='shop/images', default="", null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img1 = Image.open(self.image1.path)
+        if img1.height > 1500 or img1.width > 1500:
+            output_size = (1500, 1500)
+            img1.thumbnail(output_size)
+            img1.save(self.image1.path)
+        if self.image2:
+            img2 = Image.open(self.image2.path)
+            if img2.height > 1500 or img2.width > 1500:
+                output_size = (1500, 1500)
+                img2.thumbnail(output_size)
+                img2.save(self.image2.path)
+
+        if self.image3:
+            img3 = Image.open(self.image3.path)
+            if img3.height > 1500 or img3.width > 1500:
+                output_size = (1500, 1500)
+                img3.thumbnail(output_size)
+                img3.save(self.image3.path)
+
+        if self.image4:
+            img4 = Image.open(self.image4.path)
+            if img4.height > 1500 or img4.width > 1500:
+                output_size = (1500, 1500)
+                img4.thumbnail(output_size)
+                img4.save(self.image4.path)
+
+        if self.image5:
+            img5 = Image.open(self.image5.path)
+            if img5.height > 1500 or img5.width > 1500:
+                output_size = (1500, 1500)
+                img5.thumbnail(output_size)
+                img5.save(self.image5.path)
+
+    def __str__(self):
+        return f'{self.product_id}'
+
+
 
     def __str__(self):
         return self.product_name
@@ -34,13 +89,19 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-
+CATEGORY_CHOICES=(
+    ("M", "Mobile"),
+    ("L", "Laptop"),
+    ("TW", "Top Wear"),
+    ("BW", "Bottom Wear"),
+)
 class Product2(models.Model):
   
     image = models.ImageField(upload_to='shop2/images2', default="")
     title = models.CharField(max_length=500 , default="")
     slug = models.SlugField(unique=True, default="")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="")
+    brand = models.CharField(max_length=100, default="")
+    category = models.CharField( choices=CATEGORY_CHOICES, max_length=2 )
     warranty = models.CharField(max_length=300, null=True, blank=True)
     return_policy = models.CharField(max_length=300, null=True, blank=True)
     marked_price = models.PositiveIntegerField( default = "0")

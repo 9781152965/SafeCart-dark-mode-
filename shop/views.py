@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Product, Contact, Order, OrderUpdate
+from django.views.generic.base import View
+from .models import Product, Contact, Order, OrderUpdate,Product2
 from math import ceil
 import json
 from .models import *
@@ -7,7 +8,7 @@ from django.views.generic import TemplateView
 
 #from PayTm import Checksum
 # Create your views here.
-from django.http import HttpResponse
+#from django.http import HttpResponse
 MERCHANT_KEY = 'Your-Merchant-Key-Here'
 
 
@@ -39,17 +40,20 @@ class AddToCartView(TemplateView):
 
 def index(request):
     products = Product.objects.all()
-    print(products)
     allProds = []
     catprods = Product.objects.values('category', 'id')
     cats = {item['category'] for item in catprods}
     for cat in cats:
         prod = Product.objects.filter(category=cat)
+        topwears = Product2.objects.filter(category='TW')
+        bottomwears = Product2.objects.filter(category='BW')
+        mobiles = Product2.objects.filter(category='M')
         n = len(prod)
         nSlides = n // 4 + ceil((n / 4) - (n // 4))
         allProds.append([prod, range(1, nSlides), nSlides])
-    params = {'allProds':allProds}
+    params = {'allProds':allProds, 'topwears':topwears, "bottomwears":bottomwears,"mobiles":mobiles}
     return render(request, 'shop/index.html', params)
+
 
 def searchMatch(query, item):
     '''return true only if query matches the item'''
@@ -160,3 +164,23 @@ def checkout(request):
 
     return render(request, 'shop/checkout.html')
 
+def profile(request):
+     return render(request, 'shop/profile.html')
+
+def address(request):
+ return render(request, 'shop/address.html')
+
+def orders(request):
+ return render(request, 'shop/orders.html')
+
+def change_password(request):
+ return render(request, 'shop/changepassword.html')
+
+def mobile(request):
+ return render(request, 'shop/mobile.html')
+
+def login(request):
+ return render(request, 'shop/login.html')
+
+def customerregistration(request):
+ return render(request, 'shop/customerregistration.html')

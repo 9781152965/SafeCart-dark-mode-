@@ -1,16 +1,23 @@
 <!doctype html>
 <html lang="en">
+  {% load static %}
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="shortcut icon" href="/static/images/cart.png" type="image/x-icon">
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">    
-   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -22,15 +29,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    
+    
     <title>{% block title %} {% endblock %}</title>
+    
+    
     {% block css %}
 <style>
-    .btn-dark {
-    color: #131415;
-  
+   
+   .btn-secondary{
+  background-color: #4a909900!important;
+  border-radius: 45px;
+  border-color: #dc354600;
+}
+.bg-dark {
+    background-color: #4a9099!important;
+}
+button {
+    border-radius: 45px;
 }
 </style>
 
@@ -38,45 +54,45 @@
 </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-  <a class="navbar-brand" href="/shop">Safe Cart</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <a class="navbar-brand " href="/shop">
+    <i class="fa fa-gg" style="font-size:49px; color: rgb(76, 238, 197);" aria-hidden="true"></i><span style="color: rgb(245, 195, 195);">SafeCart</span>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/shop">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item active " >
+        <a class="nav-link" href="/shop"> <i class="fa fa-fw fa-home" style="font-size:24px"></i><b> Home</b>
+           <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/shop/home">About Us</a>
+        <a class="nav-link" href="/shop/home"><b>About Us</b> </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/shop/tracker">Tracker</a>
+        <a class="nav-link" href="/shop/tracker"><b>Tracker</b></a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/blog">Blog</a>
-      </li>
 
        <li class="nav-item">
-        <a class="nav-link" href="/shop/contact">Contact Us</a>
+        <a class="nav-link" href="/shop/contact"> <b>Contact Us</b></a>
       </li>
 
 
     </ul>
-    <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+    <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-2">
+      <input class="form-control mx-1" type="search" placeholder="Search " aria-label="Search" name="search" id="search">
+ 
+  <button class="btn-secondary mr-sm-2" id=search type="submit"><img  src="/static/images/m.png" width="20vh"></button></span>
     </form>
-    <button type="button" class="btn btn-outline-warning mx-2" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Vivamus
-sagittis lacus vel augue laoreet rutrum faucibus.">
+    <span class="  mx-2" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">
+    
+      <img  src="/static/images/cart(1).png" width="35vh"></a>
+      <span class="badge badge-secondary " id="cart">0</span>
 
-
-  Cart(<span id="cart">0</span>)
-</button>
   </div>
 </nav>
   {% block body %} {% endblock %}
