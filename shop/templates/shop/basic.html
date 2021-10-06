@@ -1,109 +1,189 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="shortcut icon" href="/static/images/cart.png" type="image/x-icon">
   {% load static %}
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+  </script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="shortcut icon" href="/static/images/cart.png" type="image/x-icon">
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
-    
-    
-    <title>{% block title %} {% endblock %}</title>
-    
-    
-    {% block css %}
-<style>
-   
-   .btn-secondary{
-  background-color: #4a909900!important;
-  border-radius: 45px;
-  border-color: #dc354600;
-}
-.bg-dark {
-    background-color: #4a9099!important;
-}
-button {
-    border-radius: 45px;
-}
-</style>
 
-    {% endblock %}
+  <title>{% block title %} {% endblock %}</title>
+
+
+  {% block css %}
+  <style>
+    :root {
+      --primary-colour: #fdfdfd !important;
+      --secondary-colour: #181616f5;
+      --nav-bg: #ebcaca00;
+
+      --text: #f1b9b9;
+    }
+
+    .dark-theme {
+      background-color: var(--secondary-colour);
+      --product-name: rgb(31, 34, 34);
+      --text: #201616;
+      --nav-bg: #15574e;
+
+    }
+
+    .bg-info {
+      background-color: var(--nav-bg) !important;
+      box-shadow: 0 15px 35px rgba(98, 143, 124, 0.376);
+    }
+
+    .form-group {
+      color: var(--text);
+    }
+
+    .dark-theme {
+      background-color: var(--primary-colour) !important;
+    }
+
+    .btn-secondary {
+      background-color: #4a909900 !important;
+      border-radius: 45px;
+      border-color: #dc354600;
+    }
+
+
+    body {
+
+      background-color: var(--secondary-colour);
+      height: 100vh;
+    }
+
+    .bg-dark {
+      background-color: #354142 !important;
+    }
+
+    button {
+      border-radius: 45px;
+    }
+  </style>
+
+  {% endblock %}
 </head>
-  <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-  <a class="navbar-brand " href="/shop">
-    <i class="fa fa-gg" style="font-size:49px; color: rgb(76, 238, 197);" aria-hidden="true"></i><span style="color: rgb(245, 195, 195);">SafeCart</span>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active " >
-        <a class="nav-link" href="/shop"> <i class="fa fa-fw fa-home" style="font-size:24px"></i><b> Home</b>
-           <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/shop/home"><b>About Us</b> </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/shop/tracker"><b>Tracker</b></a>
-      </li>
+<body>
 
 
-       <li class="nav-item">
-        <a class="nav-link" href="/shop/contact"> <b>Contact Us</b></a>
-      </li>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a class="navbar-brand " href="/shop">
+
+      <i class="fa fa-gg" style="font-size:49px; color: rgb(76, 238, 197);" aria-hidden="true"></i><span
+        style="color: rgb(245, 195, 195);">SafeCart</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active ">
+          <a class="nav-link" href="/shop"> <i class="fa fa-fw fa-home" style="font-size:24px"></i><b> Home</b>
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/home"><b>About Us</b> </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/tracker"><b>Tracker</b></a>
+        </li>
 
 
-    </ul>
-    <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-2">
-      <input class="form-control mx-1" type="search" placeholder="Search " aria-label="Search" name="search" id="search">
- 
-  <button class="btn-secondary mr-sm-2" id=search type="submit"><img  src="/static/images/m.png" width="20vh"></button></span>
-    </form>
-    <span class="  mx-2" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">
-    
-      <img  src="/static/images/cart(1).png" width="35vh"></a>
-      <span class="badge badge-secondary " id="cart">0</span>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/contact"> <b>Contact Us</b></a>
+        </li>
 
-  </div>
-</nav>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog"><b>Blog</b></a>
+        </li>
+
+      </ul>
+      <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-2">
+        <input class="form-control mx-1" type="search" placeholder="Search " aria-label="Search" name="search"
+          id="search">
+
+
+        <button class="btn-secondary mr-sm-2" id=search type="submit"><img src="/static/images/m.png"
+            width="20vh"></button></span>
+
+
+        <img src='/static/images/on1.png' id="mode" class="mx-4" style="width: 15vh; cursor: pointer;" alt="images...">
+      </form>
+      <span class="  mx-2" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom"
+        data-html="true">
+
+        <img src="/static/images/cart(1).png" width="35vh"></a>
+        <span class="badge badge-secondary " id="cart">0</span>
+
+
+
+    </div>
+  </nav>
+
   {% block body %} {% endblock %}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    {% block js %} {% endblock %}
-  </body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+  </script>
+  {% block js %}
+  <script>
+    var mode = document.getElementById("mode");
+
+
+    mode.onclick = function () {
+
+      document.body.classList.toggle("dark-theme");
+
+
+      if (document.body.classList.contains("dark-theme")) {
+        mode.src = "/static/images/on2.png";
+
+      } else {
+        mode.src = "/static/images/on1.png";
+      }
+
+
+    }
+  </script>
+  {% endblock %}
+</body>
+
 </html>
