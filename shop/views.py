@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 #from PayTm import Checksum
 # Create your views here.
-#from django.http import HttpResponse
+from django.http import HttpResponse
 MERCHANT_KEY = 'Your-Merchant-Key-Here'
 
 

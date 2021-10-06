@@ -1,0 +1,43 @@
+{% extends 'shop/basic.html' %}
+ {% block title%}home{% endblock %} 
+ {% block css%}
+<style>
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+    }
+  .col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 12 -7 -19.666667%;
+    max-width: 20.333333%;
+    }
+
+
+</style>
+ {% endblock %}
+{% block body %}
+
+<div class="container">
+
+    {%  for cat in allcategories %}
+    <hr <strong><b><h3>{{ cat.title }}</h3></b></strong><hr>
+    <div class="row">
+    {%  for p in cat.product2_set.all %}
+     <div class="col-md-4 my-3 w-auto style="border">
+   <h3>{{p.title}}</h3>
+      <img class="img-fluid" style="max-height:150px; object-fit:cover;" src="{{p.image.url}}"  >
+      <h6>Price: <strike>Rs. {{p.marked_price}}</strike>  Rs.{{p.selling_price}}</h6>
+    <a href="/shop/addtocart p.id"> new categories</a>
+    </div>
+    {% endfor %}
+
+    </div>
+   {% endfor %}
+</div>
+
+{% endblock %}
+

@@ -1,491 +1,588 @@
-{% extends 'shop/basic.html' %}
+{% extends 'shop/basic.html' %} {% load static %} {% block css %}
 
-{% load static %}
-{% block css %}
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
-.btn-secondary{
-  background-color: #4a909900!important;
-  border-radius: 25px;
-  border-color: #dc354600;
-}
-body {
+     :root {
+        --primary-colour: #fdfdfd !important;
+        --secondary-colour: #181616f5;
+        --product-name: rgb(108, 248, 236);
+        --card-shadow: rgba(8, 8, 8, 0.972);
+        --border-shadow: rgba(255, 255, 255, 0.425);
+        --background: rgba(255, 255, 255, 0.05);
+        --description: #fac2c2;
+        --nav-bg: #f3bdbd00;
+        --price: rgb(158, 241, 227);
+    }
     
-    background-color: #181616f5;
-    height: 100vh;
-}
-
-.btn-danger {
-  border-bottom-right-radius: 50px;
-   border-top-left-radius: 50px;
-   border-bottom-left-radius: 10px;
-   border-top-right-radius: 10px;
-}
-
-.ml-1, .mx-1 {
-    margin-left: -23.75rem !important;
-}
-.mr-1, .mx-1 {
-    margin-right: -2.75rem !important;
-}
-.btn-info {
-  border-bottom-right-radius: 50px;
-   border-top-left-radius: 50px;
-   border-bottom-left-radius: 10px;
-   border-top-right-radius: 10px;
-}
-.btn:hover {
-  background-color: #1c1d1d;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-  box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-}
-.bg-info {
-    background-color: #f3bdbd00 !important;
-    box-shadow: 0 15px 35px rgba(98, 143, 124, 0.376);
-    background-color: rgba(255,255,255,0.05);
-  
-    border-width: 0.1px;
-  
-   
-
-}
-h1,h2,h3,h4,h5,h6{
-	color:hsl(0, 1%, 13%);
-	text-align: center;
-}
-  .col-md-3 {
-    display: inline-block;
-    margin-left: -4px;
-    -ms-flex: 0 0 25%;
-    flex: 3 22 61%;
-    max-width: 51.9%;
-}
-  .box-element{
-    box-shadow: hsl(0deg 6% 24% / 61%) 0 0 6px;
-	background-color: rgb(255, 255, 255);
-	border-radius: 4px;
-	padding: 10px;
-
-}
-
-  .carousel-indicators .active {
-    background-color: rgb(160, 11, 11);
-  }
-
-  .col-md-3 img {
-    width: 252px;
-    height: 200px;  
-}
-
-  body .carousel-indicator li {
-    background-color: blue;
-  }
-
-  body .carousel-indicators {
-    bottom: -40px;
-
-  }
-
-  .carousel-indicators li {
-
-    background-color: rgb(214, 127, 127);
-
-
-  }
-
-  body .carousel-control-prev-icon,
-  body .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0);
-      filter: invert(1);
-  }
-  
-  .carousel-control-prev,
-  .carousel-control-next {
-    top: auto;
-    bottom: auto;
-    padding-top: 222px;
-  }
-
-  body .no-padding {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .toast:not(:last-child) {
-    margin-bottom: -1.25rem;
-  }
-
-  
-  .btn-outline-warning {
-    color: #ffc107;
-    border-color: #dc3545;
-}
-
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-    display: table-cell;
-}
-
-
-
-.row-cols-md-2>* {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 39%;
-}
-
-.row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: 30px;
-    margin-left: 30px;
-}
-
-.danger{
-  color: rgb(127, 231, 235);
-}
-
-.card-body {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    min-height: 40px;
-    padding: 0.25rem;
+    .dark-theme {
+        background-color: #fdfdfd !important;
+        --product-name: rgb(31, 34, 34);
+        --card-shadow: rgb(165, 165, 165);
+        --border-shadow: rgb(151, 115, 115);
+        --background: #fff;
+        --description: #5f0909;
+        --nav-bg: #15574e;
+        --price: rgb(13, 39, 35);
+    }
     
-}
-
-.thumbnail {
-    width: 100%;
-    height: 200px;
-    -webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    box-shadow: 16px -10px 19px -6px rgb(245 188 193);
-}
-
-.card {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
     
-  width: 300px;
-    height: 400px;
-    border-radius: 20px;
-    box-shadow: 0 17px 27px rgba(0,0,0,0.5);
-    background-color: rgba(255,255,255,0.05);
-  
-    border-width: 0.1px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.425);
-
-}
-.face h6{
-
-font-weight: 100;
-font-size: 15px;
-text-align: center;
-color: rgb(158, 241, 227);
-}
-
-.col-md-3 {
-    -ms-flex: 0 0 25%;
-    flex: 3 22 61%;
-    max-width: 24.1%;
-}
-
-.row-cols-md-2>* {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 20%;
-}
-.owl-carousel .item{
- /* border: 1px solid black; */
- font-size: 24px;
- text-align: center;
- margin-top: 20px;;
-}
-
-.owl-next{
- float:right;
-}
-.owl-prev{
- float:left;
-}
-.owl-prev span{
- font-size: 24px;
- font-weight: bold;
-}
-.owl-next span{
- font-size: 24px;
- font-weight: bold;
-}
-.text {
-  color:rgb(108, 248, 236);
-  font-weight: 300;
-    font-size: 20px;
-    text-align: center;
-}
-
-body {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #fac2c2;
-    text-align: left;
-}
+    .btn-secondary {
+        background-color: #4a909900 !important;
+        border-radius: 25px;
+        border-color: #dc354600;
+    }
+    
+    .navbar-dark {
+        color: #ec8383;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        color: rgba(149, 37, 37, 0.75);
+    }
+    
+    body {
+        background-color: var(--secondary-colour);
+        height: 100vh;
+    }
+    
+    .btn-danger {
+        width: 115px;
+        font-weight: lighter;
+        font-size: 2.3vh;
+        border-bottom-right-radius: 40px;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .btn-info {
+        width: 115px;
+        font-weight: lighter;
+        font-size: 1.7vh;
+        border-bottom-right-radius: 40px;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .btn:hover {
+        background-color: #1c1d1d;
+        -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+        -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+        box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+    }
+    
+    .bg-info {
+        background-color: var(--nav-bg) !important;
+        box-shadow: 0 15px 35px rgba(98, 143, 124, 0.376);
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: hsl(0, 1%, 13%);
+        text-align: center;
+    }
+    
+    .col-md-3 {
+        display: inline-block;
+        margin-left: -4px;
+        -ms-flex: 0 0 25%;
+        flex: 3 22 61%;
+        max-width: 51.9%;
+    }
+    
+    .box-element {
+        box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 10px;
+    }
+    
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: .75rem 1.25rem;
+        background-color: #fbf4f4;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-top-width: 1px;
+    }
+    
+    .carousel-indicators .active {
+        background-color: rgb(160, 11, 11);
+    }
+    
+    .col-md-3 img {
+        width: 252px;
+        height: 200px;
+    }
+    
+    body .carousel-indicator li {
+        background-color: blue;
+    }
+    
+    body .carousel-indicators {
+        bottom: -40px;
+    }
+    
+    .carousel-indicators li {
+        background-color: rgb(214, 127, 127);
+    }
+    
+    body .carousel-control-prev-icon,
+    body .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0);
+        filter: invert(1);
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        top: auto;
+        bottom: auto;
+        padding-top: 222px;
+    }
+    
+    body .no-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .toast:not(:last-child) {
+        margin-bottom: -1.25rem;
+    }
+    
+    .card {
+        width: 300px;
+        height: 390px;
+        border-radius: 20px;
+        box-shadow: 10px 17px 27px var(--card-shadow);
+        background-color: var(--background);
+        border-width: 0.1px;
+        border-style: solid;
+        border-color: var(--border-shadow);
+        min-width: 10px;
+    }
+    
+    .btn-outline-warning {
+        color: #ffc107;
+        border-color: #dc3545;
+    }
+    
+    article,
+    aside,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section {
+        display: table-cell;
+    }
+    
+    .row-cols-md-2>* {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 39%;
+    }
+    
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+    
+    .danger {
+        color: rgb(127, 231, 235);
+    }
+    
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-height: 40px;
+        padding: 0.25rem;
+    }
+    
+    .thumbnail {
+        width: 100%;
+        height: 200px;
+        -webkit-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+        -moz-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+        box-shadow: 16px -10px 19px -6px rgb(245 188 193);
+    }
+    
+    .face h6 {
+        font-weight: 80;
+        font-size: 15px;
+        text-align: center;
+        color: var(--price);
+    }
+    
+    .col-md-3 {
+        -ms-flex: 0 0 25%;
+        flex: 3 22 61%;
+        max-width: 24.1%;
+    }
+    
+    .row-cols-md-2>* {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 20%;
+    }
+    
+    .owl-carousel .item {
+        /* border: 1px solid black; */
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20px;
+        ;
+    }
+    
+    .owl-next {
+        float: right;
+    }
+    
+    .owl-prev {
+        float: left;
+    }
+    
+    .owl-prev span {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .owl-next span {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .text {
+        color: var(--product-name);
+        font-weight: 300;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    p {
+        margin-bottom: 0.5rem;
+    }
+    
+    .mr-1,
+    .mx-1 {
+        margin-right: -2rem !important;
+    }
+    
+    body {
+        font-size: 2.5vh;
+        color: var(--description);
+        text-align: left;
+    }
 </style>
 {% endblock %}
 
 <!--  end css      end css     end css     end css     end css     end css    end css    end css    end css    end css  -->
 
-{% block body %}
-{% load static %}
-
-{% block banner_slider %}
-
-    
-  </div><br>
-  <!-- End Banner Slider -->
-  {% endblock banner_slider %}
-  
-  {% block livesale %}
-  <!-- Live Sale Section -->
-  <div class="container mx-lg-2 mb-3">
+{% block body %} {% load static %} {% block livesale %}
+<!-- Live Sale Section -->
+<div class="container mx-lg-2 mb-3">
     <div class="row bg-primary text-center p-5 text-white border-bottom shadow">
-      <b><h1>SALE IS LIVE NOW</h1></b>
-      <div><br>5% Instant Discount on Axis Bank Credit and Debit Card</div>
-      <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
+        <b>
+      <h1>SALE IS LIVE NOW</h1>
+    </b>
+        <div><br>5% Instant Discount on Axis Bank Credit and Debit Card</div>
+        <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
     </div>
-  </div> 
-  <!-- End Live Sale Section -->
-  {% endblock livesale %}
-  
-  {% block main-content %}
-  
+</div>
+<!-- End Live Sale Section -->
+{% endblock livesale %} {% block main-content %}
+
 </span>
 
- 
- <!-- Main index &  Slideshow starts here    Main index &  Slideshow starts here Main index &  Slideshow starts here-->
-<div class="section" >
-  {% for product, range, nSlides in allProds %}
-      
-  <h5 class="my-4 font-weight-bold position-sticky box-element" style="display: inline-block;"><strong> Flash Sale On {{product.0.category}}</strong> - Recommended Items</h5>
-  <div class="row  ">
-  <h3>{{product.0.name}}</h3>
-      <div id="demo{{forloop.counter}}" class="col carousel slide my-3 w-auto " id={{product.id}}style="width: fit-content;" data-ride="carousel">
 
-          <ul class="carousel-indicators">
-              <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
-              {% for i in range %}
+<!-- Main index &  Slideshow starts here    Main index &  Slideshow starts here Main index &  Slideshow starts here-->
+<div class="section">
+    {% for product, range, nSlides in allProds %}
 
-              <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
-              {% endfor %}
-          </ul>
-          <div class="container carousel-inner no-padding">
-              <div class="carousel-item active ">
-                  {% for i in product %}
+    <h5 class="my-4 font-weight-bold position-sticky box-element" style="display: inline-block;"><strong> Flash Sale On
+      {{product.0.category}}</strong> - Recommended Items</h5>
+    <div class="row  " id="slider1">
+        <h3>{{product.0.name}}</h3>
+        <div id="demo{{forloop.counter}}" class="col carousel slide my-3 w-auto " id={{product.id}}style="width: fit-content;" data-ride="carousel">
 
-                  <div class="section col-xs-3 col-sm-3 col-md-3 " >
-                      <div class="card align-items-center align-self-center box-element" style="width: 39vh;">
-                          <img src='/media/{{i.image}}' class="row-image figure-img" alt="...">
-                          <div class="face">
-                            <div class="icon-content">
-                              <h5 class="text shadow-sm  " id="namepr{{i.id}}">{{i.product_name}}</h5>
-                              <p class="font-weight-bold position-sticky" >{{i.desc|slice:"0:25"}}...</p>
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in range %}
 
-                              <h6 class="border-bottom font-weight-bolder position-sticky " >Price: <span id="pricepr{{i.id}}">{{i.price}}</span></h6>
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="container carousel-inner no-padding" id="slider1">
+                <div class="carousel-item active ">
+                    {% for i in product %}
+
+                    <div class="section col-xs-3 col-sm-3 col-md-3 ">
+                        <div class="card align-items-center align-self-center box-element" style="width: 39vh;">
+                            <img src='/media/{{i.image}}' class="row-image figure-img" alt="...">
+                            <div class="face">
+                                <div class="icon-content">
+                                    <h5 class="text shadow-sm  " id="namepr{{i.id}}">{{i.product_name}}</h5>
+                                    <p class="font-weight-bold position-sticky">{{i.desc|slice:"0:25"}}...</p>
+
+                                    <h6 class="border-bottom font-weight-bolder position-sticky ">Price: <span id="pricepr{{i.id}}">{{i.price}}</span></h6>
+                                </div>
+                                <div>
+                                    <span id="divpr{{i.id}}" class="divpr">
+                    <i class="far fa-clock"></i>
+                    <button id="pr{{i.id}}" class="btn btn-info cart"><b>Add To Cart</b></button>
+                  </span>
+                                    <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}"
+                      class="btn btn-danger cart"><b>QuickView</b></button></a>
+                                </div>
+
                             </div>
-                            <div>
-                              <span id="divpr{{i.id}}" class="divpr">
-                                <i class="far fa-clock"></i>
-                                <button id="pr{{i.id}}" class="btn btn-info cart"><b>Add To Cart</b></button>
-                            </span>
-                            <a  href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="btn btn-danger cart"><b>QuickView</b></button></a>
-                            </div>  
-                              
-                          </div>
-                      </div>
-                  </div>
-                  {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-              </div>
-              <div class="carousel-item">
-                  {% endif %}
-                  {% endfor %}
-              </div>
-          </div>
-      </div>
-      <!-- left and right controls for the slide -->
-      <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
-          <span class="carousel-control-next-icon"></span>
-      </a>
-  </div>
-  {% endfor %}
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %} {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endfor %}
 </div>
 
 
-  <!-- Slider 1 -->
-  <div class="row col-lm-3">
+<!-- Slider 1 -->
+<div class="row col-lm-3">
     <div class="m-3">
-      <h2>ShoppingX Deals of The Day</h2>
-    <!-- Slider 1 -->
-    <div class="slider" id="slider1" style="display: block;">
-    {% for b in bottomwears %}  
-    <a href="/" class="col-md-3"><div class="item">
-        <img src="{{b.image.url}}" alt="" height="200px">
-        <span class="fw-bold" style="display: block;">{{b.title}}</span><br>
+        <h2>ShoppingX Deals of The Day</h2>
+        <!-- Slider 1 -->
+        <div class="slider" id="slider1" style="display: block;">
+            {% for b in bottomwears %}
+            <a href="/" class="col-md-3">
+                <div class="item">
+                    <img src="{{b.image.url}}" alt="" height="200px">
+                    <span class="fw-bold" style="display: block;">{{b.title}}</span><br>
 
-        <span class="fs-5">{{b.selling_price}}</span></div></a>
-    {% endfor %} 
-   </div>         
-    
-   <div class="owl-carousel" id="slider2" style="display: flex;">
-    <div class="m-3">
-      <h2>ShoppingX Deals of The Day</h2>
-    {% for tp in topwears %}  
-     <a href="/" class="col-md-3"><div class="item">
-        <img src="{{tp.image.url}}" alt="" height="200px">
-        <span class="fw-bold" style="display:block;">{{tp.title}}</span><br>
+                    <span class="fs-5">{{b.selling_price}}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
 
-        <span class="fs-5">{{tp.selling_price}}</span></div></a>
-    {% endfor %}</div>
-  </div>
-   
-   
+        <div class="owl-carousel" id="slider2" style="display: flex;">
+            <div class="m-3">
+                <h2>ShoppingX Deals of The Day</h2>
+                {% for tp in topwears %}
+                <a href="/" class="col-md-3">
+                    <div class="item">
+                        <img src="{{tp.image.url}}" alt="" height="200px">
+                        <span class="fw-bold" style="display:block;">{{tp.title}}</span><br>
 
-<!-- Payment Info Section -->
-<div class="container my-5">
-  <div class="row">
-   <div class="col-sm-3">
-    <div class="mb-3">
-      <div class="body">
-      <img src="{% static '/images/payavail/cc.jpg' %}" alt="" srcset="" class="img-fluid">
-      </div>
-    </div>
-   </div>
-   <div class="col-sm-3">
-    <div class=" mb-3">
-      <div class="body">
-       <img src="{% static '/images/payavail/upi.jpg' %}" alt="" srcset="" class="img-fluid">
-      </div>
-    </div>
-   </div>
-   <div class="col-sm-3">
-    <div class=" mb-3">
-      <div class="body">
-       <img src="{% static '/images/payavail/nb.jpg' %}" alt="" srcset="" class="img-fluid">
-      </div>
-    </div>
-   </div>
-   <div class="col-sm-3">
-    <div class=" mb-3">
-      <div class="body">
-       <img src="{% static '/images/payavail/bj.jpg' %}" alt="" srcset="" class="img-fluid">
-      </div>
-    </div>
-   </div>
-  </div>
- </div>
- <!-- End Payment Info Section -->
-
-    <br><div id ="slide " class="box-element">
-</script><a class="a-link-normal" href="#"></a>
-<img alt="NO COST EMI" src="https://images-eu.ssl-images-amazon.com/images/G/31/img16/vineet/editorialjup/Jupiter_GW-Editorial_1150x323_NCE._CB418800911_.jpg"
-height="100%" width="100%" </a>
-    </div><br>
+                        <span class="fs-5">{{tp.selling_price}}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
 
 
 
+        <!-- Payment Info Section -->
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <div class="body">
+                            <img src="{% static '/images/payavail/cc.jpg' %}" alt="" srcset="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class=" mb-3">
+                        <div class="body">
+                            <img src="{% static '/images/payavail/upi.jpg' %}" alt="" srcset="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class=" mb-3">
+                        <div class="body">
+                            <img src="{% static '/images/payavail/nb.jpg' %}" alt="" srcset="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class=" mb-3">
+                        <div class="body">
+                            <img src="{% static '/images/payavail/bj.jpg' %}" alt="" srcset="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Payment Info Section -->
 
-{% endblock %}
-{% endblock %}
-
-{% block js %}
-
-
-<script>
-  // Find out the cart items from localStorage
-  if (localStorage.getItem('cart') == null) {
-    var cart = {};
-  } else {
-    cart = JSON.parse(localStorage.getItem('cart'));
-    updateCart(cart);
-  }
-  // If the add to cart button is clicked, add/increment the item
-  //$('.cart').click(function() {
-  $('.divpr').on('click', 'button.cart', function () {
-    var idstr = this.id.toString();
-    if (cart[idstr] != undefined) {
-      qty = cart[idstr][0] + 1;
+        <br>
+        <div id="slide " class="box-element">
+            </script>
+            <a class="a-link-normal" href="#"></a>
+            <img alt="NO COST EMI" src="https://images-eu.ssl-images-amazon.com/images/G/31/img16/vineet/editorialjup/Jupiter_GW-Editorial_1150x323_NCE._CB418800911_.jpg" height="100%" width="100%" </a>
+        </div> <br> {% endblock %} {% endblock %} {% block js %}
 
 
-    } else {
-      qty = 1;
-      name = document.getElementById('name' + idstr).innerHTML;
-      price = document.getElementById('price' + idstr).innerHTML;
-      cart[idstr] = [qty, name, parseInt(price)];
+        <script>
+            // Find out the cart items from localStorage
+            if (localStorage.getItem('cart') == null) {
+                var cart = {};
+            } else {
+                cart = JSON.parse(localStorage.getItem('cart'));
+                updateCart(cart);
+            }
+            // If the add to cart button is clicked, add/increment the item
+            //$('.cart').click(function() {
+            $('.divpr').on('click', 'button.cart', function() {
+                var idstr = this.id.toString();
+                if (cart[idstr] != undefined) {
+                    qty = cart[idstr][0] + 1;
 
-    }
-    updateCart(cart);
-  });
-  //Add Popover to cart
-  $('#popcart').popover();
-  updatePopover(cart);
 
-  function updatePopover(cart) {
-    var popStr = "";
-    popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2 '>";
-    var i = 1;
-    for (var item in cart) {
-      popStr = popStr + "<b>" + i + "</b>. ";
-      popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item][0] + '<br>';
-      i = i + 1;
-    }
-    popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-outline-danger cart' id ='checkout'>Checkout</button></a> <button class='btn btn-outline-danger' onclick='clearCart()' id ='clearCart'>Clear Cart</button>     "
-    console.log(popStr);
-    document.getElementById('popcart').setAttribute('data-content', popStr);
-    $('#popcart').popover('show');
-  }
+                } else {
+                    qty = 1;
+                    name = document.getElementById('name' + idstr).innerHTML;
+                    price = document.getElementById('price' + idstr).innerHTML;
+                    cart[idstr] = [qty, name, parseInt(price)];
 
-  function clearCart() {
-    cart = JSON.parse(localStorage.getItem('cart'));
-    for (var item in cart) {
-      document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-outline-danger cart">Add To Cart</button>'
-    }
-    localStorage.clear();
-    cart = {};
-    updateCart(cart);
-  }
+                }
+                updateCart(cart);
+            });
+            //Add Popover to cart
+            $('#popcart').popover();
+            updatePopover(cart);
 
-  function updateCart(cart) {
-    var sum = 0;
-    for (var item in cart) {
-      sum = sum + cart[item][0];
-      document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-outline-danger  minus'>-</button> <span  id='val" + item + "''>" + cart[item][0] + "</span> <button id='plus" + item + "' class='btn btn-outline-danger plus'> + </button>";
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    document.getElementById('cart').innerHTML = sum;
-    console.log(cart);
-    updatePopover(cart);
-  }
-  // If plus or minus button is clicked, change the cart as well as the display value
-  $('.divpr').on("click", "button.minus", function () {
-    a = this.id.slice(7,);
-    cart['pr' + a][0] = cart['pr' + a][0] - 1;
-    cart['pr' + a][0] = Math.max(0, cart['pr' + a][0]);
-    document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
-    updateCart(cart);
-  });
-  $('.divpr').on("click", "button.plus", function () {
-    a = this.id.slice(6,);
-    cart['pr' + a][0] = cart['pr' + a][0] + 1;
-    document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
-    updateCart(cart);
-  });
-</script>
-{% endblock %}
+            function updatePopover(cart) {
+                var popStr = "";
+                popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2 '>";
+                var i = 1;
+                for (var item in cart) {
+                    popStr = popStr + "<b>" + i + "</b>. ";
+                    popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item][0] + '<br>';
+                    i = i + 1;
+                }
+                popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-outline-danger cart' id ='checkout'>Checkout</button></a> <button class='btn btn-outline-danger' onclick='clearCart()' id ='clearCart'>Clear Cart</button>     "
+                console.log(popStr);
+                document.getElementById('popcart').setAttribute('data-content', popStr);
+                $('#popcart').popover('show');
+            }
+
+            function clearCart() {
+                cart = JSON.parse(localStorage.getItem('cart'));
+                for (var item in cart) {
+                    document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-outline-danger cart">Add To Cart</button>'
+                }
+                localStorage.clear();
+                cart = {};
+                updateCart(cart);
+            }
+
+            function updateCart(cart) {
+                var sum = 0;
+                for (var item in cart) {
+                    sum = sum + cart[item][0];
+                    document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-outline-danger  minus'>-</button> <span id='val" + item + "''>" + cart[item][0] + "</span> <button id='plus" + item + "' class='btn btn-outline-danger plus'> + </button>";
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                document.getElementById('cart').innerHTML = sum;
+                console.log(cart);
+                updatePopover(cart);
+            }
+            // If plus or minus button is clicked, change the cart as well as the display value
+            $('.divpr').on("click", "button.minus", function() {
+                a = this.id.slice(7, );
+                cart['pr' + a][0] = cart['pr' + a][0] - 1;
+                cart['pr' + a][0] = Math.max(0, cart['pr' + a][0]);
+                document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+                updateCart(cart);
+            });
+            $('.divpr').on("click", "button.plus", function() {
+                a = this.id.slice(6, );
+                cart['pr' + a][0] = cart['pr' + a][0] + 1;
+                document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+                updateCart(cart);
+            });
+
+
+
+
+
+
+
+
+
+            var mode = document.getElementById("mode");
+
+
+            mode.onclick = function() {
+
+                document.body.classList.toggle("dark-theme");
+
+
+                if (document.body.classList.contains("dark-theme")) {
+                    mode.src = "/static/images/on2.png";
+
+                } else {
+                    mode.src = "/static/images/on1.png";
+                }
+
+
+            }
+
+
+
+
+            $('#slider1').containercarousel - inner({
+                loop: true,
+                margin: 20,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false,
+                        autoplay: true,
+                    },
+                    600: {
+                        items: 3,
+                        nav: true,
+                        autoplay: true,
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                        loop: true,
+                        autoplay: true,
+                    }
+                }
+            })
+        </script>
+        {% endblock %}
